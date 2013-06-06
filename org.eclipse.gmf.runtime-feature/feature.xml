@@ -2,7 +2,7 @@
 <feature
       id="org.eclipse.gmf"
       label="%featureName"
-      version="1.4.2.qualifier"
+      version="1.4.2.vqualifier"
       provider-name="%providerName"
       image="eclipse_update_120.jpg">
 
