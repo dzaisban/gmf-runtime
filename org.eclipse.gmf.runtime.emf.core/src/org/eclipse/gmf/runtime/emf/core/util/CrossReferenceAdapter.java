@@ -67,7 +67,7 @@ public class CrossReferenceAdapter extends ECrossReferenceAdapter {
 	 * Initializes me.
 	 */
 	public CrossReferenceAdapter() {
-		this(true);
+		this(false);
 	}
 
 	/**
