@@ -48,6 +48,7 @@ import org.eclipse.ui.views.properties.IPropertySource;
  */
 public class UndoableModelPropertySheetEntry extends PropertySheetEntry {
 
+	private Object myDescriptorId = null;
     /**
      * The operation history used by this entry to execute property change
      * commands. <code>Null</code> if I am not the root entry. Only the root
@@ -105,8 +106,12 @@ public class UndoableModelPropertySheetEntry extends PropertySheetEntry {
     	if (editor == null) {
     	 	return;
     	}
-        
-    	 if (!editor.isValueValid()) {
+
+    	if(getDescriptor().getId().equals(myDescriptorId)) {
+    		return;
+    	}
+
+    	if (!editor.isValueValid()) {
             setErrorText(editor.getErrorMessage());
             return;
         } else 
@@ -127,8 +132,17 @@ public class UndoableModelPropertySheetEntry extends PropertySheetEntry {
 
         // Set the editor value
         if (changed)
-            setValue(newValue);
-
+        {
+        	try
+        	{
+        		myDescriptorId = getDescriptor().getId(); 
+        		setValue(newValue);
+        	}
+        	finally
+        	{
+        		myDescriptorId = null;
+        	}
+        }
     }
 
     /*
